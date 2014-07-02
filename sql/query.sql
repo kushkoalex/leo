@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 07/02/2014 17:35:24
+-- Date Created: 07/02/2014 18:09:48
 -- Generated from EDMX file: D:\projects\leo_db\leo_db\Model.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
@@ -32,6 +32,8 @@ USE `leo`;
 --    ALTER TABLE `ProductLang` DROP CONSTRAINT `FK_LanguageProductLang`;
 --    ALTER TABLE `ProductLang` DROP CONSTRAINT `FK_ProductProductLang`;
 --    ALTER TABLE `CategoryImage` DROP CONSTRAINT `FK_CategoryCategoryImage`;
+--    ALTER TABLE `SpecialContentLang` DROP CONSTRAINT `FK_SpecialContentSpecialContentLang`;
+--    ALTER TABLE `SpecialContentLang` DROP CONSTRAINT `FK_LanguageSpecialContentLang`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -49,6 +51,8 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `ProductImage`;
     DROP TABLE IF EXISTS `ProductLang`;
     DROP TABLE IF EXISTS `CategoryImage`;
+    DROP TABLE IF EXISTS `SpecialContent`;
+    DROP TABLE IF EXISTS `SpecialContentLang`;
 SET foreign_key_checks = 1;
 
 -- --------------------------------------------------
@@ -56,8 +60,8 @@ SET foreign_key_checks = 1;
 -- --------------------------------------------------
 
 CREATE TABLE `Category`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Name` varchar (200) NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Name` varchar (200) NOT NULL, 
 	`CategoryId` int);
 
 ALTER TABLE `Category` ADD PRIMARY KEY (Id);
@@ -66,8 +70,8 @@ ALTER TABLE `Category` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `Language`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Code` varchar (2) NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Code` varchar (2) NOT NULL, 
 	`Name` varchar (50) NOT NULL);
 
 ALTER TABLE `Language` ADD PRIMARY KEY (Id);
@@ -76,10 +80,10 @@ ALTER TABLE `Language` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `CategoryLang`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Title` varchar (200) NOT NULL,
-	`CategoryId` int NOT NULL,
-	`LanguageId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Title` varchar (200) NOT NULL, 
+	`CategoryId` int NOT NULL, 
+	`LanguageId` int NOT NULL, 
 	`Text` longtext NOT NULL);
 
 ALTER TABLE `CategoryLang` ADD PRIMARY KEY (Id);
@@ -88,8 +92,8 @@ ALTER TABLE `CategoryLang` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `Article`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Date` datetime NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Date` datetime NOT NULL, 
 	`Published` bool NOT NULL);
 
 ALTER TABLE `Article` ADD PRIMARY KEY (Id);
@@ -98,10 +102,10 @@ ALTER TABLE `Article` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ArticleLang`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Title` longtext NOT NULL,
-	`Description` longtext NOT NULL,
-	`ArticleId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Title` longtext NOT NULL, 
+	`Description` longtext NOT NULL, 
+	`ArticleId` int NOT NULL, 
 	`LanguageId` int NOT NULL);
 
 ALTER TABLE `ArticleLang` ADD PRIMARY KEY (Id);
@@ -110,9 +114,9 @@ ALTER TABLE `ArticleLang` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ArticleItem`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`SortOrder` int NOT NULL,
-	`ArticleId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`SortOrder` int NOT NULL, 
+	`ArticleId` int NOT NULL, 
 	`ContentType` int NOT NULL);
 
 ALTER TABLE `ArticleItem` ADD PRIMARY KEY (Id);
@@ -121,9 +125,9 @@ ALTER TABLE `ArticleItem` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ArticleItemImage`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`ImageSource` varchar (255) NOT NULL,
-	`ArticleItemId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`ImageSource` varchar (255) NOT NULL, 
+	`ArticleItemId` int NOT NULL, 
 	`SortOrder` int NOT NULL);
 
 ALTER TABLE `ArticleItemImage` ADD PRIMARY KEY (Id);
@@ -132,9 +136,9 @@ ALTER TABLE `ArticleItemImage` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ArticleItemLang`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Text` longtext NOT NULL,
-	`ArticleItemId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Text` longtext NOT NULL, 
+	`ArticleItemId` int NOT NULL, 
 	`LanguageId` int NOT NULL);
 
 ALTER TABLE `ArticleItemLang` ADD PRIMARY KEY (Id);
@@ -143,8 +147,8 @@ ALTER TABLE `ArticleItemLang` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `Product`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`Name` varchar (200) NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Name` varchar (200) NOT NULL, 
 	`Text` longtext NOT NULL);
 
 ALTER TABLE `Product` ADD PRIMARY KEY (Id);
@@ -153,8 +157,8 @@ ALTER TABLE `Product` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ProductImage`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`ImageSource` varchar (255) NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`ImageSource` varchar (255) NOT NULL, 
 	`ProductId` int NOT NULL);
 
 ALTER TABLE `ProductImage` ADD PRIMARY KEY (Id);
@@ -163,8 +167,8 @@ ALTER TABLE `ProductImage` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `ProductLang`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`LanguageId` int NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`LanguageId` int NOT NULL, 
 	`ProductId` int NOT NULL);
 
 ALTER TABLE `ProductLang` ADD PRIMARY KEY (Id);
@@ -173,11 +177,33 @@ ALTER TABLE `ProductLang` ADD PRIMARY KEY (Id);
 
 
 CREATE TABLE `CategoryImage`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE,
-	`ImageSource` varchar (255) NOT NULL,
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`ImageSource` varchar (255) NOT NULL, 
 	`CategoryId` int NOT NULL);
 
 ALTER TABLE `CategoryImage` ADD PRIMARY KEY (Id);
+
+
+
+
+CREATE TABLE `SpecialContent`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`PageImageSource` varchar (255) NOT NULL, 
+	`ContentImageSource` varchar (255) NOT NULL);
+
+ALTER TABLE `SpecialContent` ADD PRIMARY KEY (Id);
+
+
+
+
+CREATE TABLE `SpecialContentLang`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Title` longtext NOT NULL, 
+	`Text` longtext NOT NULL, 
+	`SpecialContentId` int NOT NULL, 
+	`LanguageId` int NOT NULL);
+
+ALTER TABLE `SpecialContentLang` ADD PRIMARY KEY (Id);
 
 
 
@@ -199,7 +225,7 @@ ADD CONSTRAINT `FK_CategoryCategoryLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoryCategoryLang'
 
-CREATE INDEX `IX_FK_CategoryCategoryLang`
+CREATE INDEX `IX_FK_CategoryCategoryLang` 
     ON `CategoryLang`
     (`CategoryId`);
 
@@ -214,7 +240,7 @@ ADD CONSTRAINT `FK_LanguageCategoryLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LanguageCategoryLang'
 
-CREATE INDEX `IX_FK_LanguageCategoryLang`
+CREATE INDEX `IX_FK_LanguageCategoryLang` 
     ON `CategoryLang`
     (`LanguageId`);
 
@@ -229,7 +255,7 @@ ADD CONSTRAINT `FK_ArticleArticleLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticleLang'
 
-CREATE INDEX `IX_FK_ArticleArticleLang`
+CREATE INDEX `IX_FK_ArticleArticleLang` 
     ON `ArticleLang`
     (`ArticleId`);
 
@@ -244,7 +270,7 @@ ADD CONSTRAINT `FK_LanguageArticleLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LanguageArticleLang'
 
-CREATE INDEX `IX_FK_LanguageArticleLang`
+CREATE INDEX `IX_FK_LanguageArticleLang` 
     ON `ArticleLang`
     (`LanguageId`);
 
@@ -259,7 +285,7 @@ ADD CONSTRAINT `FK_ArticleArticleItem`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ArticleArticleItem'
 
-CREATE INDEX `IX_FK_ArticleArticleItem`
+CREATE INDEX `IX_FK_ArticleArticleItem` 
     ON `ArticleItem`
     (`ArticleId`);
 
@@ -274,7 +300,7 @@ ADD CONSTRAINT `FK_ArticleItemArticleItemImage`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ArticleItemArticleItemImage'
 
-CREATE INDEX `IX_FK_ArticleItemArticleItemImage`
+CREATE INDEX `IX_FK_ArticleItemArticleItemImage` 
     ON `ArticleItemImage`
     (`ArticleItemId`);
 
@@ -289,7 +315,7 @@ ADD CONSTRAINT `FK_CategoryCategory`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoryCategory'
 
-CREATE INDEX `IX_FK_CategoryCategory`
+CREATE INDEX `IX_FK_CategoryCategory` 
     ON `Category`
     (`CategoryId`);
 
@@ -304,7 +330,7 @@ ADD CONSTRAINT `FK_ArticleItemArticleItemLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ArticleItemArticleItemLang'
 
-CREATE INDEX `IX_FK_ArticleItemArticleItemLang`
+CREATE INDEX `IX_FK_ArticleItemArticleItemLang` 
     ON `ArticleItemLang`
     (`ArticleItemId`);
 
@@ -319,7 +345,7 @@ ADD CONSTRAINT `FK_LanguageArticleItemLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LanguageArticleItemLang'
 
-CREATE INDEX `IX_FK_LanguageArticleItemLang`
+CREATE INDEX `IX_FK_LanguageArticleItemLang` 
     ON `ArticleItemLang`
     (`LanguageId`);
 
@@ -334,7 +360,7 @@ ADD CONSTRAINT `FK_ProductProductImage`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ProductProductImage'
 
-CREATE INDEX `IX_FK_ProductProductImage`
+CREATE INDEX `IX_FK_ProductProductImage` 
     ON `ProductImage`
     (`ProductId`);
 
@@ -349,7 +375,7 @@ ADD CONSTRAINT `FK_LanguageProductLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LanguageProductLang'
 
-CREATE INDEX `IX_FK_LanguageProductLang`
+CREATE INDEX `IX_FK_LanguageProductLang` 
     ON `ProductLang`
     (`LanguageId`);
 
@@ -364,7 +390,7 @@ ADD CONSTRAINT `FK_ProductProductLang`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ProductProductLang'
 
-CREATE INDEX `IX_FK_ProductProductLang`
+CREATE INDEX `IX_FK_ProductProductLang` 
     ON `ProductLang`
     (`ProductId`);
 
@@ -379,9 +405,39 @@ ADD CONSTRAINT `FK_CategoryCategoryImage`
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoryCategoryImage'
 
-CREATE INDEX `IX_FK_CategoryCategoryImage`
+CREATE INDEX `IX_FK_CategoryCategoryImage` 
     ON `CategoryImage`
     (`CategoryId`);
+
+-- Creating foreign key on `SpecialContentId` in table 'SpecialContentLang'
+
+ALTER TABLE `SpecialContentLang`
+ADD CONSTRAINT `FK_SpecialContentSpecialContentLang`
+    FOREIGN KEY (`SpecialContentId`)
+    REFERENCES `SpecialContent`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SpecialContentSpecialContentLang'
+
+CREATE INDEX `IX_FK_SpecialContentSpecialContentLang` 
+    ON `SpecialContentLang`
+    (`SpecialContentId`);
+
+-- Creating foreign key on `LanguageId` in table 'SpecialContentLang'
+
+ALTER TABLE `SpecialContentLang`
+ADD CONSTRAINT `FK_LanguageSpecialContentLang`
+    FOREIGN KEY (`LanguageId`)
+    REFERENCES `Language`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LanguageSpecialContentLang'
+
+CREATE INDEX `IX_FK_LanguageSpecialContentLang` 
+    ON `SpecialContentLang`
+    (`LanguageId`);
 
 -- --------------------------------------------------
 -- Script has ended
