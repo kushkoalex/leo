@@ -52,3 +52,20 @@ a.block{
     height: 41px;
     margin: 95px auto 0;
 }
+
+.imagine{
+    display: none;
+    background: url("../img/logo-intro-big.png") no-repeat bottom center;
+    width: 360px;
+    height: 180px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -90px;
+    margin-left: -180px;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    line-height: 45px;
+    font-weight: 100;
+}
