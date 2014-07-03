@@ -83,7 +83,7 @@ a.block {
     color: #ffffff;
 }
 
-.category-title {
+.categories-title {
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     padding: 10px 0 14px 0;
@@ -92,8 +92,21 @@ a.block {
 
 }
 
-.category-title span {
+.categories-title span {
     border-bottom: 1px dashed #ffffff;
+}
+
+.category-title{
+    text-align: center;
+    padding: 38px 0 16px 0;
+    text-transform: uppercase;
+    color: #ffffff;
+    width: 180px;
+    position: relative;
+    margin: 0 auto;
+    font-size: 11px;
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+    background: url("../img/select-bg.png");
 }
 
 .menu {
@@ -153,9 +166,11 @@ a.block {
     width: 92px;
     height: 33px;
     position: absolute;
-    border: 1px solid #e3e8ed;
+    /*border: 1px solid #e3e8ed;*/
+    border: 2px solid rgba(255, 255, 255, 0.5);
+
     background-color: rgba(0, 0, 0, 0.3);
-    margin-top: 16px;
+    top: 16px;
     text-align: center;
     padding-top: 7px;
     text-transform: uppercase;
@@ -171,4 +186,33 @@ a.block {
 .language-switcher span a {
     color: inherit;
     text-decoration: none;
+}
+
+.product-selector-container
+{
+    padding-top: 7px;
+}
+
+.product-selector
+{
+    /*border: 1px solid #000000;*/
+    margin: 0 auto;
+    position: relative;
+    display: block;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 0;
+    padding-left: 20px;
+    outline: none;
+    background: url("../img/select-bg-big.png");
+    width: 212px;
+    height: 35px;
+    /*border: 1px solid #000000;*/
+    cursor: pointer;
+    text-align: center;
+    color: #ffffff;
+    font-size: 13px;
 }
