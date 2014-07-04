@@ -3,7 +3,9 @@ $(function () {
         $(".intro-container").fadeOut(1000, function () {
             $(".imagine").fadeIn(1000, function () {
                 setTimeout(function () {
-                    location.href = 'main.html';
+                    $(".imagine").fadeOut(1000, function () {
+                        location.href = 'main.html';
+                    });
                 }, 2000);
             });
         });
