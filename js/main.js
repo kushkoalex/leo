@@ -29,4 +29,13 @@ $(function () {
 
 //    changeImage();
 //    setInterval(changeImage, delay);
+
+    $("#contentFrameWrapper").draggable(
+        {
+            cursor: "move",
+//            axis: "y",
+            containment: "#page",
+            scroll: false});
+
+
 });
