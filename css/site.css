@@ -23,7 +23,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../img/bg.png");
+    background-image: url("../images/bg.png");
 }
 
 .intro-container {
@@ -250,13 +250,13 @@ a.block {
     padding-top: 60px;
 }
 
-#contentFrameWrapper #contentFrame #contentContainer .title
+#contentFrameWrapper #contentFrame #contentContainer #title
 {
     text-transform: uppercase;
     font-size: 22px;
 }
 
-#contentFrameWrapper #contentFrame #contentContainer .text
+#contentFrameWrapper #contentFrame #contentContainer #text
 {
     font-size: 13px;
     padding-top: 20px;
