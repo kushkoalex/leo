@@ -1,6 +1,4 @@
 $(function () {
-
-
     $(".block").click(function () {
         $(".intro-container").fadeOut(1000, function () {
             $(".imagine").fadeIn(1000, function () {
@@ -11,9 +9,24 @@ $(function () {
         });
     });
 
+    var images = ['img/bg.png', 'img/bg2.png'];
+    var i = 0;
+    var delay = 5000;
+
+
+    var changeImage = function () {
+        $("#bg-layer").animate({opacity: 0}, 'slow', function () {
+            if (i == images.length) {
+                i = 0;
+            }
+//            console.log(i);
+            var image = images[i];
+            var bg = 'url(' + image + ')';
+            i++;
+            $(this).css({'background-image': bg }).animate({opacity: 1});
+        });
+    };
+
+//    changeImage();
+//    setInterval(changeImage, delay);
 });
-
-
-// http://stackoverflow.com/questions/5002351/jquery-fade-css-background-image-change
-
- //    http://stackoverflow.com/questions/4630947/how-do-i-change-the-background-image-using-jquery-animation
