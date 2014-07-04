@@ -17,6 +17,10 @@ $(function () {
     var delay = 5000;
 
 
+
+
+
+
     var changeImage = function () {
         $("#bg-layer").animate({opacity: 0}, 'slow', function () {
             if (i == LEO.settings.specialContent.items.length) {
@@ -33,7 +37,24 @@ $(function () {
         });
     };
 
-    changeImage();
+    var changeImageFadeInOnly = function () {
+            if (i == LEO.settings.specialContent.items.length) {
+                i = 0;
+            }
+            console.log(i);
+            var item = LEO.settings.specialContent.items[i];
+            console.log(item);
+            var bg = 'url(' + LEO.settings.specialContent.imagePath+ item.imageFileName + ')';
+            i++;
+            $("#bg-layer").css({'background-image': bg }).animate({opacity: 1},'slow',function(){
+                $("#contentFrameWrapper").css("display","block");
+                $("#title").html(item.title);
+                $("#text").html(item.text);
+            });
+
+    };
+
+    changeImageFadeInOnly();
     setInterval(changeImage, delay);
 
     $("#contentFrameWrapper").draggable(

@@ -23,7 +23,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("../images/bg.png");
+    opacity: 0;
 }
 
 .intro-container {
@@ -235,6 +235,7 @@ a.block {
     position: absolute;
     top: 220px;
     right: 0;
+    display: none;
 }
 
 #contentFrameWrapper #contentFrame
@@ -262,4 +263,8 @@ a.block {
     padding-top: 20px;
     line-height: 22px;
     padding-bottom: 50px;
+}
+
+#hiddencontent{
+    display: none;
 }
